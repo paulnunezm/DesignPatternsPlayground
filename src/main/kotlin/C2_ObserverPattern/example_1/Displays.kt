@@ -1,15 +1,25 @@
 package C2_ObserverPattern.example_1
 
+import java.util.*
+
 class CurrentConditionsDisplay(
-        private val weatherData: WeatherSubject
-) : WeatherObserver, DisplayElement {
+        weatherData: Observable
+) : Observer, DisplayElement {
+
     private var temperature = 0f
     private var humidity = 0f
+    private var observable: Observable = weatherData
 
-    override fun update(temperature: Float, humidity: Float, pressure: Float) {
-        this.temperature = temperature
-        this.humidity = humidity
-        display()
+    init {
+        observable.addObserver(this)
+    }
+
+    override fun update(o: Observable?, arg: Any?) {
+        if (o is WeatherData) {
+            temperature = o.temperature
+            humidity = o.humidity
+            display()
+        }
     }
 
     override fun display() {
@@ -18,21 +28,28 @@ class CurrentConditionsDisplay(
 }
 
 class CrazyDisplayer(
-        private val weatherData: WeatherSubject
-) : WeatherObserver, DisplayElement {
+        weatherData: Observable
+) : Observer, DisplayElement {
+
     private var temperature = 0f
     private var humidity = 0f
     private var pressure = 0f
+    private var observable: Observable = weatherData
 
-    override fun update(temperature: Float, humidity: Float, pressure: Float) {
-        this.temperature = temperature
-        this.humidity = humidity
-        this.pressure = pressure
-        display()
+    init {
+        observable.addObserver(this)
+    }
+
+    override fun update(o: Observable?, arg: Any?) {
+        if (o is WeatherData) {
+            temperature = o.temperature
+            humidity = o.humidity
+            display()
+        }
     }
 
     override fun display() {
-        println("Crazy measurements temp: ${temperature*humidity*pressure}")
+        println("Crazy measurements temp: ${temperature * humidity * pressure}")
     }
 
 }

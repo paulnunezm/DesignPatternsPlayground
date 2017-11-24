@@ -1,31 +1,23 @@
 package C2_ObserverPattern.example_1
 
-import kotlin.collections.ArrayList
+import java.util.*
 
-class WeatherData : WeatherSubject {
-    var observers: ArrayList<WeatherObserver> = ArrayList()
+class WeatherData : Observable() {
     var temperature = 0f
+        private set
+
     var humidity = 0f
+        private set
+
     var pressure = 0f
-
-    override fun registerObserver(o: WeatherObserver) {
-        observers.add(o)
-    }
-
-    override fun removeObserver(o: WeatherObserver) {
-        val i = observers.indexOf(o)
-        if (i > 0) {
-            observers.remove(o)
-        }
-    }
-
-    override fun notifyObservers() {
-        for (observer: WeatherObserver in observers) {
-            observer.update(temperature, humidity, pressure)
-        }
-    }
+        private set
 
     private fun measurementsChanged() {
+        setChanged()
+
+        /* This method let us send the notification to our subscribers
+         * with the difference that they can pull the data from this object
+         * as it passes a reference to the observers */
         notifyObservers()
     }
 
