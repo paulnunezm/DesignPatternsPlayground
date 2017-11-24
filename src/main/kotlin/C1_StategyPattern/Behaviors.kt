@@ -1,4 +1,4 @@
-package C1_IntroToDesignPatterns
+package C1_StategyPattern
 
 interface QuackBehavior{
     fun quack()
