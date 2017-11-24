@@ -8,6 +8,10 @@ interface FlyBehavior {
     fun fly()
 }
 
+/**
+ * Note: This way we can encapsulate algorithms.
+ */
+
 class Quack: QuackBehavior{
     override fun quack() {
         println("quack")
