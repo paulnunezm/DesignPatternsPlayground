@@ -1,4 +1,4 @@
-package C2_ObserverPattern.example_1
+package c2_observerPattern
 
 fun main(args: Array<String>){
     val weatherData = WeatherData()

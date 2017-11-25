@@ -1,4 +1,4 @@
-package C2_ObserverPattern.example_1
+package c2_observerPattern
 
 import java.util.*
 
