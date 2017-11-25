@@ -1,4 +1,4 @@
-package C1_StategyPattern
+package c1_stategyPattern
 
 fun main(arg: Array<String>) {
 
