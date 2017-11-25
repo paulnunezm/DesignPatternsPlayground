@@ -1,4 +1,4 @@
-package C1_StategyPattern
+package c1_stategyPattern
 
 abstract class Duck {
     protected lateinit var quackBehavior: QuackBehavior
